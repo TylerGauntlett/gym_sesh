@@ -62,7 +62,33 @@
                         <tbody>
                         <tr>
                             <td class="font-weight-bold">Muscle Group:</td>
-                            <td>Back/Biceps</td>
+                            <td><div class="workout-choices">
+                                <form>
+                                    <select class="custom-select">
+                                        <option selected>Back or Biceps?</option>
+                                        <option value="back">Back</option>
+                                        <option value="bicepts">Bicepts</option>
+                                    </select>
+                                </form>
+                            </div>
+                                <div class="workout-choices">
+                                <form>
+                                    <select class="custom-select">
+                                        <option selected>Chest or Triceps?</option>
+                                        <option value="chest">Chest</option>
+                                        <option value="tricepts">Tricepts</option>
+                                    </select>
+                                </form>
+                            </div>
+                                <div class="workout-choices">
+                                <form>
+                                    <select class="custom-select">
+                                        <option selected>Legs or Shoulders?</option>
+                                        <option value="legs">Legs</option>
+                                        <option value="shoulders">Shoulders</option>
+                                    </select>
+                                </form>
+                            </div></td>
                         </tr>
                         <tr>
                             <td class="font-weight-bold">Est. Time:</td>
@@ -136,5 +162,8 @@
 </script>
 
 <style>
+    .workout-choices{
+        margin: 10px;        
+    }
 </style>
 </html>
