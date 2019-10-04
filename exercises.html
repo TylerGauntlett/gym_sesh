@@ -276,7 +276,7 @@
                 let table = this.exercises[this.currentExerciseIndex].table
 
                 // Update completeness for this set
-                table[index].complete = true
+                table[index].complete = !table[index].complete
 
                 // Check if all sets are marked complete
                 let exerciseCompleted = table.reduce((sum, next) => sum && next.complete, true)
