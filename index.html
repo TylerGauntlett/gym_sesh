@@ -83,29 +83,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th>Lat pull down</th>
-                                <th>3</th>
-                            </tr>
-                            <tr>
-                                <th>Dumbbell hammer curls</th>
-                                <th>3</th>
-                            </tr>
-                            <tr>
-                                <th>Lawn Mowers</th>
-                                <th>3</th>
-                            </tr>
-                            <tr>
-                                <th>Standing cable curls</th>
-                                <th>3</th>
-                            </tr>
-                            <tr>
-                                <th>Shrugs</th>
-                                <th>3</th>
-                            </tr>
-                            <tr>
-                                <th>Barbell preacher curls</th>
-                                <th>3</th>
+                            <tr v-for="exercise in exercises">
+                                <th>{{exercise.name}}</th>
+                                <th>{{exercise.sets}}</th>
                             </tr>
                             </tbody>
                         </table>
@@ -124,7 +104,34 @@
 <script>
     let app = new Vue({
         el: '#app',
-        data: {}
+        data: {
+            exercises: [
+                {
+                    name: 'Lat pull down',
+                    sets: 3,
+                },
+                {
+                    name: 'Dumbbell hammer curls',
+                    sets: 3,
+                },
+                {
+                    name: 'Lawn Mowers',
+                    sets: 3,
+                },
+                {
+                    name: 'Standing cable curls',
+                    sets: 3,
+                },
+                {
+                    name: 'Shrugs',
+                    sets: 3,
+                },
+                {
+                    name: 'Barbell preacher curls',
+                    sets: 3,
+                },
+            ]
+        }
     })
 </script>
 
