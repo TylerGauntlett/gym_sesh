@@ -56,6 +56,17 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
+            <div class="col-12 mt-3 text-center">
+                <h5>Choose a Workout Type</h5>
+                <select class="form-control" name="workout_type" v-model="workoutType">
+                    <option value="" selected disabled>Select an Option</option>
+                    <option value="back_biceps">Back/Biceps</option>
+                    <option value="chest_triceps">Chest/Triceps</option>
+                    <option value="legs_shoulders">Legs/Shoulders</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" v-if="workoutType">
             <div class="col-12 mt-2">
                 <div class="card">
                     <table class="table table-borderless mb-0">
@@ -93,7 +104,7 @@
                 </div>
             </div>
             <div class="col-12 mt-2">
-                <a class="btn btn-primary w-100" href="exercises.html">
+                <a class="btn btn-primary w-100" :href="'exercises.html?exercise=' + workoutType">
                     Begin Workout
                 </a>
             </div>
@@ -105,6 +116,7 @@
     let app = new Vue({
         el: '#app',
         data: {
+            workoutType: '',
             exercises: [
                 {
                     name: 'Lat pull down',
