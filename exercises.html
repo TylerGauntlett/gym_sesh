@@ -55,7 +55,14 @@
         </div>
     </nav>
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" v-if="!selectedExercise || !validExercise">
+            <div class="col-12 mt-2">
+                <a class="btn btn-primary w-100" href="index.html">
+                    Select an exercise before continuing
+                </a>
+            </div>
+        </div>
+        <div class="row" v-else>
             <div class="col-12 mt-2">
                 <div class="clearfix text-center">
                     <button type="button"
@@ -65,11 +72,11 @@
                         <i class="fas fa-backward"></i>
                     </button>
                     <span class="font-weight-bold align-text-top">
-                        {{exercises[currentExerciseIndex].name}} ({{currentExerciseIndex + 1}}/{{exercises.length}})
+                        {{selectedExercise[currentExerciseIndex].name}} ({{currentExerciseIndex + 1}}/{{selectedExercise.length}})
                     </span>
                     <button type="button"
                             class="btn btn-secondary float-right"
-                            :disabled="currentExerciseIndex + 1 >= exercises.length"
+                            :disabled="currentExerciseIndex + 1 >= selectedExercise.length"
                             @click="currentExerciseIndex += 1">
                         <i class="fas fa-forward"></i>
                     </button>
@@ -87,7 +94,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="(row, index) in exercises[currentExerciseIndex].table"
+                            <tr v-for="(row, index) in selectedExercise[currentExerciseIndex].table"
                                 :class="{'table-success': row.complete}"
                                 @click="completeSet(index)">
                                 <th scope="row">{{row.set}}</th>
@@ -116,151 +123,159 @@
                 }
             },
             currentExerciseIndex: 0,
-            exercises: [
-                {
-                    name: 'Lat pull down',
-                    table: [
-                        {
-                            set: 1,
-                            reps: 12,
-                            weight: 85,
-                            complete: false
-                        },
-                        {
-                            set: 2,
-                            reps: 10,
-                            weight: 95,
-                            complete: false
-                        },
-                        {
-                            set: 3,
-                            reps: 8,
-                            weight: 105,
-                            complete: false
-                        }
-                    ]
-                },
-                {
-                    name: 'Dumbbell hammer curls',
-                    table: [
-                        {
-                            set: 1,
-                            reps: 12,
-                            weight: 25,
-                            complete: false
-                        },
-                        {
-                            set: 2,
-                            reps: 10,
-                            weight: 30,
-                            complete: false
-                        },
-                        {
-                            set: 3,
-                            reps: 8,
-                            weight: 35,
-                            complete: false
-                        }
-                    ]
-                },
-                {
-                    name: 'Lawn Mowers',
-                    table: [
-                        {
-                            set: 1,
-                            reps: 12,
-                            weight: 35,
-                            complete: false
-                        },
-                        {
-                            set: 2,
-                            reps: 10,
-                            weight: 40,
-                            complete: false
-                        },
-                        {
-                            set: 3,
-                            reps: 8,
-                            weight: 45,
-                            complete: false
-                        }
-                    ]
-                },
-                {
-                    name: 'Standing cable curls',
-                    table: [
-                        {
-                            set: 1,
-                            reps: 12,
-                            weight: 25,
-                            complete: false
-                        },
-                        {
-                            set: 2,
-                            reps: 10,
-                            weight: 30,
-                            complete: false
-                        },
-                        {
-                            set: 3,
-                            reps: 8,
-                            weight: 35,
-                            complete: false
-                        }
-                    ]
-                },
-                {
-                    name: 'Shrugs',
-                    table: [
-                        {
-                            set: 1,
-                            reps: 12,
-                            weight: 135,
-                            complete: false
-                        },
-                        {
-                            set: 2,
-                            reps: 10,
-                            weight: 140,
-                            complete: false
-                        },
-                        {
-                            set: 3,
-                            reps: 8,
-                            weight: 145,
-                            complete: false
-                        }
-                    ]
-                },
-                {
-                    name: 'Barbell preacher curls',
-                    table: [
-                        {
-                            set: 1,
-                            reps: 12,
-                            weight: 50,
-                            complete: false
-                        },
-                        {
-                            set: 2,
-                            reps: 10,
-                            weight: 55,
-                            complete: false
-                        },
-                        {
-                            set: 3,
-                            reps: 8,
-                            weight: 60,
-                            complete: false
-                        }
-                    ]
-                }
-            ]
+            exercises: {
+                back_biceps: [
+                    {
+                        name: 'Lat pull down',
+                        table: [
+                            {
+                                set: 1,
+                                reps: 12,
+                                weight: 85,
+                                complete: false
+                            },
+                            {
+                                set: 2,
+                                reps: 10,
+                                weight: 95,
+                                complete: false
+                            },
+                            {
+                                set: 3,
+                                reps: 8,
+                                weight: 105,
+                                complete: false
+                            }
+                        ]
+                    },
+                    {
+                        name: 'Dumbbell hammer curls',
+                        table: [
+                            {
+                                set: 1,
+                                reps: 12,
+                                weight: 25,
+                                complete: false
+                            },
+                            {
+                                set: 2,
+                                reps: 10,
+                                weight: 30,
+                                complete: false
+                            },
+                            {
+                                set: 3,
+                                reps: 8,
+                                weight: 35,
+                                complete: false
+                            }
+                        ]
+                    },
+                    {
+                        name: 'Lawn Mowers',
+                        table: [
+                            {
+                                set: 1,
+                                reps: 12,
+                                weight: 35,
+                                complete: false
+                            },
+                            {
+                                set: 2,
+                                reps: 10,
+                                weight: 40,
+                                complete: false
+                            },
+                            {
+                                set: 3,
+                                reps: 8,
+                                weight: 45,
+                                complete: false
+                            }
+                        ]
+                    },
+                    {
+                        name: 'Standing cable curls',
+                        table: [
+                            {
+                                set: 1,
+                                reps: 12,
+                                weight: 25,
+                                complete: false
+                            },
+                            {
+                                set: 2,
+                                reps: 10,
+                                weight: 30,
+                                complete: false
+                            },
+                            {
+                                set: 3,
+                                reps: 8,
+                                weight: 35,
+                                complete: false
+                            }
+                        ]
+                    },
+                    {
+                        name: 'Shrugs',
+                        table: [
+                            {
+                                set: 1,
+                                reps: 12,
+                                weight: 135,
+                                complete: false
+                            },
+                            {
+                                set: 2,
+                                reps: 10,
+                                weight: 140,
+                                complete: false
+                            },
+                            {
+                                set: 3,
+                                reps: 8,
+                                weight: 145,
+                                complete: false
+                            }
+                        ]
+                    },
+                    {
+                        name: 'Barbell preacher curls',
+                        table: [
+                            {
+                                set: 1,
+                                reps: 12,
+                                weight: 50,
+                                complete: false
+                            },
+                            {
+                                set: 2,
+                                reps: 10,
+                                weight: 55,
+                                complete: false
+                            },
+                            {
+                                set: 3,
+                                reps: 8,
+                                weight: 60,
+                                complete: false
+                            }
+                        ]
+                    }
+                ],
+                chest_triceps: [],
+                legs_shoulders: []
+            }
         },
         watch: {
             exercises: {
                 handler: function () {
-                    let tables = _.flatten(this.exercises.map(exercise => exercise.table))
+                    if (!this.selectedExercise) {
+                        return null
+                    }
+
+                    let tables = _.flatten(this.selectedExercise.map(exercise => exercise.table))
 
                     let allExercisesComplete = tables.reduce((sum, next) => sum && next.complete, true)
 
@@ -271,9 +286,24 @@
                 deep: true
             }
         },
+        computed: {
+            workoutType() {
+                return this.getQueryString('exercise')
+            },
+            selectedExercise() {
+                if (!this.workoutType) {
+                    return null
+                }
+
+                return this.exercises[this.workoutType]
+            },
+            validExercise() {
+                return !!this.exercises[this.workoutType]
+            }
+        },
         methods: {
             completeSet(index) {
-                let table = this.exercises[this.currentExerciseIndex].table
+                let table = this.selectedExercise[this.currentExerciseIndex].table
 
                 // Update completeness for this set
                 table[index].complete = !table[index].complete
@@ -282,9 +312,14 @@
                 let exerciseCompleted = table.reduce((sum, next) => sum && next.complete, true)
 
                 // Automatically moves to the next exercises when all sets are finished
-                if (exerciseCompleted && this.currentExerciseIndex + 1 < this.exercises.length) {
+                if (exerciseCompleted && this.currentExerciseIndex + 1 < this.selectedExercise.length) {
                     this.currentExerciseIndex += 1
                 }
+            },
+            getQueryString(string) {
+                const urlParams = new URLSearchParams(window.location.search)
+
+                return urlParams.get(string)
             }
         }
     })
