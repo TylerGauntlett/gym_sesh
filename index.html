@@ -1,198 +1,280 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
     <title>Gym Sesh</title>
 
     <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
 
     <!--Lodash-->
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
 
     <!-- VueJS-->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
     <!--Font Awesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+  </head>
 
-<body>
-<div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <body>
+    <div id="app">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="index.html">Gym Sesh</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="exercises.html">Exercise</a>
-                </li>
-            </ul>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html"
+                >Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="exercises.html">Exercise</a>
+            </li>
+          </ul>
         </div>
-    </nav>
-    <div class="container-fluid">
+      </nav>
+      <div class="container-fluid">
         <div class="row">
-            <div class="col-12 mt-3 text-center">
-                <h5>Choose a Workout Type</h5>
-                <select class="form-control" name="workout_type" v-model="workoutType">
-                    <option value="" selected disabled>Select an Option</option>
-                    <option v-for="type in workoutTypes" :value="type.value">{{type.display}}</option>
-                </select>
-            </div>
+          <div class="col-12 mt-3 text-center">
+            <h5>Choose a Workout Type</h5>
+            <select
+              class="form-control"
+              name="workout_type"
+              v-model="workoutType"
+            >
+              <option value="" selected disabled>Select an Option</option>
+              <option v-for="type in workoutTypes" :value="type.value">{{
+                type.display
+              }}</option>
+            </select>
+          </div>
         </div>
         <div class="row" v-if="selectedExercise">
-            <div class="col-12 mt-2">
-                <div class="card">
-                    <table class="table table-borderless mb-0">
-                        <tbody>
-                        <tr>
-                            <td class="font-weight-bold">Muscle Group:</td>
-                            <td>{{displayExerciseName}}</td>
-                        </tr>
-                        <tr>
-                            <td class="font-weight-bold">Est. Time:</td>
-                            <td>{{lowerTime}}min - {{upperTime}}min</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+          <div class="col-12 mt-2">
+            <div class="card">
+              <table class="table table-borderless mb-0">
+                <tbody>
+                  <tr>
+                    <td class="font-weight-bold">Muscle Group:</td>
+                    <td>{{ displayExerciseName }}</td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">Est. Time:</td>
+                    <td>{{ lowerTime }}min - {{ upperTime }}min</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="col-12 mt-2">
-                <div class="card">
-                    <div class="table-responsive">
-                        <table class="table table-bordered mb-0 text-center">
-                            <thead>
-                            <tr class="bg-dark text-white rounded">
-                                <th scope="col">Exercises</th>
-                                <th scope="col">Sets</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-for="exercise in selectedExercise">
-                                <th>{{exercise.name}}</th>
-                                <th>{{exercise.sets}}</th>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+          </div>
+          <div class="col-12 mt-2">
+            <div class="card">
+              <div class="table-responsive">
+                <table class="table table-bordered mb-0 text-center">
+                  <thead>
+                    <tr class="bg-dark text-white rounded">
+                      <th scope="col">Exercises</th>
+                      <th scope="col">Sets</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="exercise in selectedExercise">
+                      <th>{{ exercise.name }}</th>
+                      <th>{{ exercise.sets }}</th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div class="col-12 mt-2">
-                <a class="btn btn-primary w-100" :href="'exercises.html?exercise=' + workoutType">
-                    Begin Workout
-                </a>
-            </div>
+          </div>
+          <div class="col-12 mt-2">
+            <a
+              class="btn btn-primary w-100"
+              :href="'exercises.html?exercise=' + workoutType"
+            >
+              Begin Workout
+            </a>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-</body>
-<script>
+  </body>
+  <script>
     let app = new Vue({
-        el: '#app',
-        data: {
-            workoutType: '',
-            workoutTypes: [
-                {
-                    value: 'back_biceps',
-                    display: 'Back/Biceps'
-                },
-                {
-                    value: 'chest_triceps',
-                    display: 'Chest/Triceps'
-                },
-                {
-                    value: 'legs_shoulders',
-                    display: 'Legs/Shoulders'
-                }
-            ],
-            exercises: {
-                back_biceps: [
-                    {
-                        name: 'Lat pull down',
-                        sets: 3
-                    },
-                    {
-                        name: 'Dumbbell hammer curls',
-                        sets: 3
-                    },
-                    {
-                        name: 'Lawn Mowers',
-                        sets: 3
-                    },
-                    {
-                        name: 'Standing cable curls',
-                        sets: 3
-                    },
-                    {
-                        name: 'Shrugs',
-                        sets: 3
-                    },
-                    {
-                        name: 'Barbell preacher curls',
-                        sets: 3
-                    }
-                ],
-                chest_triceps: [],
-                legs_shoulders: []
+      el: "#app",
+      data: {
+        workoutType: "",
+        workoutTypes: [
+          {
+            value: "back_biceps",
+            display: "Back/Biceps"
+          },
+          {
+            value: "chest_triceps",
+            display: "Chest/Triceps"
+          },
+          {
+            value: "legs_shoulders",
+            display: "Legs/Shoulders"
+          }
+        ],
+        exercises: {
+          back_biceps: [
+            {
+              name: "Lat pull down",
+              sets: 3
+            },
+            {
+              name: "Dumbbell hammer curls",
+              sets: 3
+            },
+            {
+              name: "Lawn Mowers",
+              sets: 3
+            },
+            {
+              name: "Standing cable curls",
+              sets: 3
+            },
+            {
+              name: "Shrugs",
+              sets: 3
+            },
+            {
+              name: "Barbell preacher curls",
+              sets: 3
             }
-        },
-        computed: {
-            selectedExercise() {
-                if (!this.workoutType) {
-                    return null
-                }
-
-                return this.exercises[this.workoutType]
+          ],
+          chest_triceps: [
+            {
+              name: "Flat dumbbell chest presses",
+              sets: 4
             },
-            displayExerciseName() {
-                if (!this.workoutType) {
-                    return null
-                }
-
-                return _.find(this.workoutTypes, {value: this.workoutType}).display
+            {
+              name: "Incline dumbbell bench press",
+              sets: 3
             },
-            lowerTime() {
-                if (!this.workoutType) {
-                    return 0
-                }
-
-                return _.floor(this.exercises[this.workoutType].length * 7.5)
+            {
+              name: "Dips and cable crossovers superset",
+              sets: 3
             },
-            upperTime() {
-                if (!this.workoutType) {
-                    return 0
-                }
-
-                return _.floor(this.exercises[this.workoutType].length * 12.5)
+            {
+              name: "Dumbbell skull crushers",
+              sets: 3
+            },
+            {
+              name: "Triceps rope pushdown",
+              sets: 5
+            },
+            {
+              name: "TRX triceps extension",
+              sets: 3
             }
+          ],
+          legs_shoulders: [ {
+              name: "Barbell Deadlift",
+              sets: 4
+            },
+            {
+              name: "Dumbbell Rear Lunge",
+              sets: 4
+            },
+            {
+              name: "Hack Squat",
+              sets: 3
+            },
+            {
+              name: "Seated Leg Curl",
+              sets: 3
+            },
+            {
+              name: "Leg Extensions",
+              sets: 3
+            },
+            {
+              name: "Seated Calf Raise. 4 sets",
+              sets: 4
+            }
+          ]
         }
-    })
-</script>
+      },
+      computed: {
+        selectedExercise() {
+          if (!this.workoutType) {
+            return null;
+          }
 
-<style>
-</style>
+          return this.exercises[this.workoutType];
+        },
+        displayExerciseName() {
+          if (!this.workoutType) {
+            return null;
+          }
+
+          return _.find(this.workoutTypes, { value: this.workoutType }).display;
+        },
+        lowerTime() {
+          if (!this.workoutType) {
+            return 0;
+          }
+
+          return _.floor(this.exercises[this.workoutType].length * 7.5);
+        },
+        upperTime() {
+          if (!this.workoutType) {
+            return 0;
+          }
+
+          return _.floor(this.exercises[this.workoutType].length * 12.5);
+        }
+      }
+    });
+  </script>
+
+  <style></style>
 </html>
