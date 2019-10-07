@@ -4,9 +4,9 @@ Personal Trainer App
 
 ## Contributors
 
-* **TylerGauntlett** - *Initial work* - [TylerGauntlett](https://github.com/TylerGauntlett)
+* **TylerGauntlett** - *Maintainers* - [TylerGauntlett](https://github.com/TylerGauntlett)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/TylerGauntlett/gym_sesh/graphs/contributors) who participated in this project.
 
 ## License
 
