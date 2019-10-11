@@ -32,6 +32,11 @@
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <style>
+        .not-allowed{
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 
 <body>
@@ -76,7 +81,7 @@
                     </span>
                     <button type="button"
                             class="btn btn-secondary float-right"
-                            :disabled="currentExerciseIndex + 1 >= selectedExercise.length"
+                            :disabled="currentExerciseIndex + 1 >= selectedExercise.length || !allSetsComplete"
                             @click="currentExerciseIndex += 1">
                         <i class="fas fa-forward"></i>
                     </button>
@@ -95,7 +100,7 @@
                             </thead>
                             <tbody>
                             <tr v-for="(row, index) in selectedExercise[currentExerciseIndex].table"
-                                :class="{'table-success': row.complete}"
+                                :class="{'table-success': row.complete, 'not-allowed': !clickable(index)}"
                                 @click="completeSet(index)">
                                 <th scope="row">{{row.set}}</th>
                                 <th>{{row.reps}}</th>
@@ -601,27 +606,43 @@
             },
             validExercise() {
                 return !!this.exercises[this.workoutType]
+            },
+            allSetsComplete(){
+                let table = this.selectedExercise[this.currentExerciseIndex].table
+                return table.reduce((sum, next) => sum && next.complete, true)
             }
         },
         methods: {
             completeSet(index) {
-                let table = this.selectedExercise[this.currentExerciseIndex].table
+                if(this.clickable(index)){
+                    let table = this.selectedExercise[this.currentExerciseIndex].table
 
-                // Update completeness for this set
-                table[index].complete = !table[index].complete
+                    // Update completeness for this set
+                    table[index].complete = !table[index].complete
 
-                // Check if all sets are marked complete
-                let exerciseCompleted = table.reduce((sum, next) => sum && next.complete, true)
+                    // Check if all sets are marked complete
+                    let exerciseCompleted = this.allSetsComplete
 
-                // Automatically moves to the next exercises when all sets are finished
-                if (exerciseCompleted && this.currentExerciseIndex + 1 < this.selectedExercise.length) {
-                    this.currentExerciseIndex += 1
+                    // Automatically moves to the next exercises when all sets are finished
+                    if (exerciseCompleted && this.currentExerciseIndex + 1 < this.selectedExercise.length) {
+                        this.currentExerciseIndex += 1
+                    }
                 }
             },
             getQueryString(string) {
                 const urlParams = new URLSearchParams(window.location.search)
 
                 return urlParams.get(string)
+            },
+            clickable(index){
+                let table = this.selectedExercise[this.currentExerciseIndex].table
+                
+                // Check if the previous rep is not completed or if the next rep is completed
+                if((table[index -1] && !table[index -1].complete) || (table[index +1] && table[index + 1].complete)){
+                    return false
+                }
+
+                return true
             }
         }
     })
