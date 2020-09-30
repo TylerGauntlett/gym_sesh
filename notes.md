@@ -1,6 +1,6 @@
 ## Gym Sesh
 
-### New Account Questions/Possible Answers
+### New Account Questions/Possible Answers.
 
 - Gender
   - Male
